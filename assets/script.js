@@ -122,18 +122,42 @@ document.querySelector('.faq-list').addEventListener('click', function (e) {
     if (!wasActive) item.classList.add('active');
 });
 
-/* ═══════════ CONTACT FORM — WhatsApp Submission ═══════════ */
+/* ═══════════ CONTACT FORM — WhatsApp + Email Fallback ═══════════ */
 document.getElementById('quoteForm').addEventListener('submit', function (event) {
     event.preventDefault();
-    const nm = document.getElementById('fullName').value;
-    const ph = document.getElementById('phone').value;
-    const ct = document.getElementById('city').value;
+    const nm = document.getElementById('fullName').value.trim();
+    const ph = document.getElementById('phone').value.trim();
+    const ct = document.getElementById('city').value.trim();
     const sv = document.getElementById('serviceReq').value;
-    const ms = document.getElementById('message').value;
+    const ms = document.getElementById('message').value.trim();
 
-    const text = `Hello OWLLEYE! I need a quote.\n\n*Name:* ${nm}\n*Phone:* ${ph}\n*Location:* ${ct}\n*Service:* ${sv}\n*Message:* ${ms}`;
-    const link = `https://wa.me/919391609598?text=${encodeURIComponent(text)}`;
-    window.open(link, '_blank');
+    /* Basic phone validation — must be 10+ digits */
+    const phoneDigits = ph.replace(/\D/g, '');
+    if (phoneDigits.length < 10) {
+        alert('Please enter a valid phone number (at least 10 digits).');
+        document.getElementById('phone').focus();
+        return;
+    }
+
+    /* 1. Primary: WhatsApp */
+    const waText = `Hello OWLLEYE! I need a quote.\n\n*Name:* ${nm}\n*Phone:* ${ph}\n*Location:* ${ct}\n*Service:* ${sv}\n*Message:* ${ms}`;
+    const waLink = `https://wa.me/919391609598?text=${encodeURIComponent(waText)}`;
+    const waWindow = window.open(waLink, '_blank');
+
+    /* 2. Fallback: mailto (if WhatsApp popup is blocked) */
+    if (!waWindow || waWindow.closed || typeof waWindow.closed === 'undefined') {
+        const emailSubject = `New Enquiry from ${nm} — ${sv}`;
+        const emailBody = `Name: ${nm}\nPhone: ${ph}\nCity/Area: ${ct}\nService: ${sv}\nMessage: ${ms}`;
+        const mailtoLink = `mailto:contact@owlleye.com?subject=${encodeURIComponent(emailSubject)}&body=${encodeURIComponent(emailBody)}`;
+        window.location.href = mailtoLink;
+    }
+
+    /* 3. Backup: Store lead in localStorage so data is never lost */
+    try {
+        const leads = JSON.parse(localStorage.getItem('owlleye_leads') || '[]');
+        leads.push({ name: nm, phone: ph, city: ct, service: sv, message: ms, timestamp: new Date().toISOString() });
+        localStorage.setItem('owlleye_leads', JSON.stringify(leads));
+    } catch (e) { /* localStorage full or unavailable — silently continue */ }
 
     this.style.display = 'none';
     const success = document.getElementById('formSuccess');

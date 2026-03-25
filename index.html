@@ -45,7 +45,7 @@
         "closes": "23:59"
       },
       "priceRange": "$$",
-      "description": "OWLLEYE provides premium AI-powered CCTV installation, surveillance systems, and home automation across Hyderabad & Telangana. 500+ successful installations with 24/7 active AI monitoring."
+      "description": "OWLLEYE provides premium AI-powered CCTV installation, surveillance systems, and home automation throughout India. 500+ successful installations with 24/7 active AI monitoring."
     }
     </script>
     <meta name="theme-color" content="#020408">
@@ -125,34 +125,61 @@
         <nav class="nav-inner">
             <a href="#hero" class="nav-brand">
                 <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <!-- Ear Tufts -->
-                    <path d="M 25 30 L 18 8 L 38 25 Z" fill="var(--accent-primary)" opacity="0.85" />
-                    <path d="M 75 30 L 82 8 L 62 25 Z" fill="var(--accent-primary)" opacity="0.85" />
-                    <!-- Head -->
-                    <ellipse cx="50" cy="42" rx="32" ry="28" fill="var(--text-secondary)" opacity="0.85" />
-                    <!-- Face Disc (lighter inner face) -->
-                    <ellipse cx="50" cy="45" rx="24" ry="20" fill="#1a2e42" opacity="0.9" />
-                    <!-- Left Eye Ring -->
-                    <circle cx="38" cy="42" r="11" fill="none" stroke="var(--accent-primary)" stroke-width="2"
-                        opacity="0.6" />
-                    <!-- Right Eye Ring -->
-                    <circle cx="62" cy="42" r="11" fill="none" stroke="var(--accent-primary)" stroke-width="2"
-                        opacity="0.6" />
-                    <!-- Left Eye (big round owl eye) -->
-                    <circle cx="38" cy="42" r="8" fill="#0a1520" />
-                    <circle cx="38" cy="42" r="5" fill="var(--accent-primary)">
-                        <animate attributeName="opacity" values="1;0.4;1" dur="3s" repeatCount="indefinite" />
-                    </circle>
-                    <circle cx="36" cy="40" r="2" fill="#fff" opacity="0.7" />
-                    <!-- Right Eye (big round owl eye) -->
-                    <circle cx="62" cy="42" r="8" fill="#0a1520" />
-                    <circle cx="62" cy="42" r="5" fill="var(--accent-primary)">
-                        <animate attributeName="opacity" values="1;0.4;1" dur="3s" begin="0.3s"
-                            repeatCount="indefinite" />
-                    </circle>
-                    <circle cx="60" cy="40" r="2" fill="#fff" opacity="0.7" />
-                    <!-- Beak -->
-                    <path d="M 47 50 L 53 50 L 50 57 Z" fill="var(--accent-primary)" opacity="0.95" />
+                    <style>
+                        @keyframes eyeScan {
+                            0%, 15%, 100% { transform: translateX(0); }
+                            30%, 45% { transform: translateX(-3px); }
+                            50%, 65% { transform: translateX(0); }
+                            80%, 95% { transform: translateX(3px); }
+                        }
+                        .camera-eye {
+                            animation: eyeScan 8s ease-in-out infinite;
+                        }
+                        @keyframes headScan {
+                            0%, 15%, 100% { transform: rotate(0deg); }
+                            30%, 45% { transform: rotate(-10deg); }
+                            50%, 65% { transform: rotate(0deg); }
+                            80%, 95% { transform: rotate(10deg); }
+                        }
+                        .owl-head {
+                            transform-origin: 50px 50px;
+                            animation: headScan 8s ease-in-out infinite;
+                        }
+                    </style>
+                    <g class="owl-head">
+                        <!-- Ear Tufts -->
+                        <path d="M 25 30 L 18 8 L 38 25 Z" fill="var(--accent-primary)" opacity="0.85" />
+                        <path d="M 75 30 L 82 8 L 62 25 Z" fill="var(--accent-primary)" opacity="0.85" />
+                        <!-- Head -->
+                        <ellipse cx="50" cy="42" rx="32" ry="28" fill="var(--text-secondary)" opacity="0.85" />
+                        <!-- Face Disc (lighter inner face) -->
+                        <ellipse cx="50" cy="45" rx="24" ry="20" fill="#1a2e42" opacity="0.9" />
+                        <!-- Left Eye Ring -->
+                        <circle cx="38" cy="42" r="11" fill="none" stroke="var(--accent-primary)" stroke-width="2"
+                            opacity="0.6" />
+                        <!-- Right Eye Ring -->
+                        <circle cx="62" cy="42" r="11" fill="none" stroke="var(--accent-primary)" stroke-width="2"
+                            opacity="0.6" />
+                        <!-- Left Eye (big round owl eye) -->
+                        <circle cx="38" cy="42" r="8" fill="#0a1520" />
+                        <g class="camera-eye">
+                            <circle cx="38" cy="42" r="5" fill="var(--accent-primary)">
+                                <animate attributeName="opacity" values="1;0.6;1" dur="4s" repeatCount="indefinite" />
+                            </circle>
+                            <circle cx="36" cy="40" r="2" fill="#fff" opacity="0.7" />
+                        </g>
+                        <!-- Right Eye (big round owl eye) -->
+                        <circle cx="62" cy="42" r="8" fill="#0a1520" />
+                        <g class="camera-eye">
+                            <circle cx="62" cy="42" r="5" fill="var(--accent-primary)">
+                                <animate attributeName="opacity" values="1;0.6;1" dur="4s" begin="0.5s"
+                                    repeatCount="indefinite" />
+                            </circle>
+                            <circle cx="60" cy="40" r="2" fill="#fff" opacity="0.7" />
+                        </g>
+                        <!-- Beak -->
+                        <path d="M 47 50 L 53 50 L 50 57 Z" fill="var(--accent-primary)" opacity="0.95" />
+                    </g>
                     <!-- Body -->
                     <path
                         d="M 26 65 Q 26 50 30 42 L 35 55 Q 50 80 65 55 L 70 42 Q 74 50 74 65 Q 74 85 50 90 Q 26 85 26 65 Z"
@@ -339,6 +366,51 @@
                 <!-- Detection Box -->
                 <div class="scene-detect-box" id="sceneDetectBox"></div>
             </div>
+            
+            <!-- Escalation Animations -->
+            <div class="escalation-alerts reveal">
+                <!-- Left Animation: WhatsApp Notification -->
+                <div class="alert-anim-box whatsapp-alert-box">
+                    <div class="alert-phone">
+                        <div class="alert-phone-notch"></div>
+                        <div class="alert-phone-screen">
+                            <div class="wp-header"><i class="fab fa-whatsapp"></i> WhatsApp</div>
+                            <div class="wp-msg-container">
+                                <div class="wp-msg-bubble">
+                                    <div class="wp-sender">OWLLEYE AI</div>
+                                    <div class="wp-text">🚨 Person Detected at Front Gate!</div>
+                                    <div class="wp-snapshot"><i class="fas fa-user-secret"></i></div>
+                                    <div class="wp-time">Just now</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="alert-caption">Instant WhatsApp Alerts</p>
+                </div>
+
+                <!-- Right Animation: Police Escalation -->
+                <div class="alert-anim-box police-alert-box">
+                    <div class="alert-monitor">
+                        <div class="monitor-screen">
+                            <div class="police-header"><i class="fas fa-building-shield"></i> OWLLEYE HQ / Local Police</div>
+                            <div class="police-content">
+                                <div class="police-alert-modal">
+                                    <div class="alert-title">⚠ ESCALATION TRIGGERED ⚠</div>
+                                    <div class="alert-snapshot-wrapper">
+                                        <div class="alert-snapshot"><i class="fas fa-user-secret"></i></div>
+                                        <div class="alert-scanline"></div>
+                                    </div>
+                                    <div class="alert-details">Suspect Detected. Dispatching authorities immediately.</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="monitor-stand"></div>
+                        <div class="monitor-base"></div>
+                    </div>
+                    <p class="alert-caption">Auto-Escalation to Authorities</p>
+                </div>
+            </div>
+
             <div class="solutions-grid reveal">
                 <div class="solution-card">
                     <div class="solution-icon"><i class="fas fa-user-check"></i></div>
@@ -726,7 +798,7 @@
                     <form id="quoteForm">
                         <div class="form-group"><input type="text" id="fullName" placeholder=" " required autocomplete="name"><label
                                 for="fullName">Full Name</label></div>
-                        <div class="form-group"><input type="tel" id="phone" placeholder=" " required autocomplete="tel"><label
+                        <div class="form-group"><input type="tel" id="phone" placeholder=" " required autocomplete="tel" pattern="[0-9+\s\-]{10,}" minlength="10" title="Enter a valid phone number (at least 10 digits)"><label
                                 for="phone">Phone Number</label></div>
                         <div class="form-group"><input type="text" id="city" placeholder=" " required autocomplete="address-level2"><label
                                 for="city">City / Area</label></div>
@@ -792,6 +864,7 @@
                         <li><a href="#gallery">Gallery</a></li>
                         <li><a href="#faq">FAQ</a></li>
                         <li><a href="#contact">Contact</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
                     </ul>
                 </div>
                 <div>
@@ -839,7 +912,7 @@
     <!-- ═══════════ COOKIE CONSENT ═══════════ -->
     <div class="cookie-banner" id="cookieBanner">
         <p>🍪 We use cookies to enhance your browsing experience. By continuing to visit this site, you agree to our use
-            of cookies.</p>
+            of cookies. <a href="privacy-policy.html">Read our Privacy Policy</a>.</p>
         <button class="cookie-accept" id="cookieAccept">GOT IT</button>
     </div>
 
