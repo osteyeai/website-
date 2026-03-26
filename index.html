@@ -145,42 +145,36 @@
                             transform-origin: 50px 50px;
                             animation: headScan 8s ease-in-out infinite;
                         }
+                        @keyframes laserSweep {
+                            0%, 15%, 100% { transform: rotate(0deg); opacity: 0.6; }
+                            30%, 45% { transform: rotate(-25deg); opacity: 0.85; }
+                            50%, 65% { transform: rotate(0deg); opacity: 0.6; }
+                            80%, 95% { transform: rotate(25deg); opacity: 0.85; }
+                        }
+                        .laser-left {
+                            transform-origin: 38px 42px;
+                            animation: laserSweep 8s ease-in-out infinite;
+                        }
+                        .laser-right {
+                            transform-origin: 62px 42px;
+                            animation: laserSweep 8s ease-in-out infinite;
+                        }
                     </style>
-                    <g class="owl-head">
-                        <!-- Ear Tufts -->
-                        <path d="M 25 30 L 18 8 L 38 25 Z" fill="var(--accent-primary)" opacity="0.85" />
-                        <path d="M 75 30 L 82 8 L 62 25 Z" fill="var(--accent-primary)" opacity="0.85" />
-                        <!-- Head -->
-                        <ellipse cx="50" cy="42" rx="32" ry="28" fill="var(--text-secondary)" opacity="0.85" />
-                        <!-- Face Disc (lighter inner face) -->
-                        <ellipse cx="50" cy="45" rx="24" ry="20" fill="#1a2e42" opacity="0.9" />
-                        <!-- Left Eye Ring -->
-                        <circle cx="38" cy="42" r="11" fill="none" stroke="var(--accent-primary)" stroke-width="2"
-                            opacity="0.6" />
-                        <!-- Right Eye Ring -->
-                        <circle cx="62" cy="42" r="11" fill="none" stroke="var(--accent-primary)" stroke-width="2"
-                            opacity="0.6" />
-                        <!-- Left Eye (big round owl eye) -->
-                        <circle cx="38" cy="42" r="8" fill="#0a1520" />
-                        <g class="camera-eye">
-                            <circle cx="38" cy="42" r="5" fill="var(--accent-primary)">
-                                <animate attributeName="opacity" values="1;0.6;1" dur="4s" repeatCount="indefinite" />
-                            </circle>
-                            <circle cx="36" cy="40" r="2" fill="#fff" opacity="0.7" />
-                        </g>
-                        <!-- Right Eye (big round owl eye) -->
-                        <circle cx="62" cy="42" r="8" fill="#0a1520" />
-                        <g class="camera-eye">
-                            <circle cx="62" cy="42" r="5" fill="var(--accent-primary)">
-                                <animate attributeName="opacity" values="1;0.6;1" dur="4s" begin="0.5s"
-                                    repeatCount="indefinite" />
-                            </circle>
-                            <circle cx="60" cy="40" r="2" fill="#fff" opacity="0.7" />
-                        </g>
-                        <!-- Beak -->
-                        <path d="M 47 50 L 53 50 L 50 57 Z" fill="var(--accent-primary)" opacity="0.95" />
-                    </g>
+                    <defs>
+                        <radialGradient id="redLensGrad" cx="50%" cy="50%" r="50%">
+                            <stop offset="0%" stop-color="#ff0000" stop-opacity="1" />
+                            <stop offset="60%" stop-color="#880000" stop-opacity="0.8" />
+                            <stop offset="100%" stop-color="#220000" stop-opacity="0.9" />
+                        </radialGradient>
+                        <linearGradient id="laserGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#ff0000" stop-opacity="0.85" />
+                            <stop offset="50%" stop-color="#ff0000" stop-opacity="0.45" />
+                            <stop offset="100%" stop-color="#ff0000" stop-opacity="0" />
+                        </linearGradient>
+                    </defs>
+
                     <!-- Body -->
+                    <!-- Moved before head so lasers draw over the body -->
                     <path
                         d="M 26 65 Q 26 50 30 42 L 35 55 Q 50 80 65 55 L 70 42 Q 74 50 74 65 Q 74 85 50 90 Q 26 85 26 65 Z"
                         fill="var(--text-secondary)" opacity="0.7" />
@@ -201,6 +195,57 @@
                         stroke-width="1.5" stroke-linecap="round" opacity="0.6" />
                     <path d="M 60 90 L 58 96 M 60 90 L 62 96 M 60 90 L 60 97" stroke="var(--accent-primary)"
                         stroke-width="1.5" stroke-linecap="round" opacity="0.6" />
+
+                    <g class="owl-head">
+                        <!-- Ear Tufts -->
+                        <path d="M 25 30 L 18 8 L 38 25 Z" fill="var(--accent-primary)" opacity="0.85" />
+                        <path d="M 75 30 L 82 8 L 62 25 Z" fill="var(--accent-primary)" opacity="0.85" />
+                        <!-- Head -->
+                        <ellipse cx="50" cy="42" rx="32" ry="28" fill="var(--text-secondary)" opacity="0.85" />
+                        <!-- Face Disc (lighter inner face) -->
+                        <ellipse cx="50" cy="45" rx="24" ry="20" fill="#1a2e42" opacity="0.9" />
+                        
+                        <!-- Left Camera Lens Eye -->
+                        <g class="camera-eye">
+                            <!-- Projector Beam (placed inside eye so it translates with it) -->
+                            <polygon class="laser-left" points="38,42 -12,120 88,120" fill="url(#laserGrad)" style="mix-blend-mode: screen;" />
+
+                            <!-- Outer Shell -->
+                            <circle cx="38" cy="42" r="11" fill="#050a10" stroke="#222" stroke-width="1.5" />
+                            <circle cx="38" cy="42" r="9" fill="none" stroke="var(--accent-primary)" stroke-width="1" opacity="0.5" />
+                            <!-- Red Core -->
+                            <circle cx="38" cy="42" r="6" fill="url(#redLensGrad)">
+                                <animate attributeName="r" values="5;6;5" dur="1.5s" repeatCount="indefinite" />
+                            </circle>
+                            <!-- Inner Aperture & Light -->
+                            <circle cx="38" cy="42" r="3" fill="#ffcccc" opacity="0.8" />
+                            <circle cx="38" cy="42" r="1.5" fill="#fff" />
+                            <!-- Reflection -->
+                            <path d="M 31 38 Q 38 30 45 38" stroke="#fff" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.5" />
+                        </g>
+
+                        <!-- Right Camera Lens Eye -->
+                        <g class="camera-eye">
+                            <!-- Projector Beam -->
+                            <polygon class="laser-right" points="62,42 12,120 112,120" fill="url(#laserGrad)" style="mix-blend-mode: screen;" />
+
+                            <!-- Outer Shell -->
+                            <circle cx="62" cy="42" r="11" fill="#050a10" stroke="#222" stroke-width="1.5" />
+                            <circle cx="62" cy="42" r="9" fill="none" stroke="var(--accent-primary)" stroke-width="1" opacity="0.5" />
+                            <!-- Red Core -->
+                            <circle cx="62" cy="42" r="6" fill="url(#redLensGrad)">
+                                <animate attributeName="r" values="5;6;5" dur="1.5s" begin="0.75s" repeatCount="indefinite" />
+                            </circle>
+                            <!-- Inner Aperture & Light -->
+                            <circle cx="62" cy="42" r="3" fill="#ffcccc" opacity="0.8" />
+                            <circle cx="62" cy="42" r="1.5" fill="#fff" />
+                            <!-- Reflection -->
+                            <path d="M 55 38 Q 62 30 69 38" stroke="#fff" stroke-width="1.5" stroke-linecap="round" fill="none" opacity="0.5" />
+                        </g>
+
+                        <!-- Beak -->
+                        <path d="M 47 50 L 53 50 L 50 57 Z" fill="var(--accent-primary)" opacity="0.95" />
+                    </g>
                 </svg>
                 <div class="nav-brand-text-group">
                     <span class="nav-brand-text">OWLLEYE</span>
