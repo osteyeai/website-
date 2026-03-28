@@ -4,11 +4,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OSTEYE — AI-Powered CCTV, Surveillance & Home Automation | Hyderabad & Telangana</title>
+    <title>OSTEYE — AI-Powered CCTV, Surveillance & Home Automation | Throughout India</title>
     <meta name="description"
-        content="OSTEYE (Owl Security Technologies Eye) provides AI-powered CCTV installation, surveillance systems, and home automation across Hyderabad & Telangana. 500+ cameras installed, 24/7 AI monitoring.">
+        content="OSTEYE (Owl Security Technologies Eye) provides AI-powered CCTV installation, surveillance systems, and home automation throughout India. 500+ cameras installed, 24/7 AI monitoring.">
     <meta name="keywords"
-        content="CCTV installation Hyderabad, CCTV installation Vikarabad, AI Surveillance Telangana, Smart Home Automation Hyderabad, Security Cameras India, Solar CCTV, 4G Cameras, NVR, OSTEYE">
+        content="CCTV installation India, AI Surveillance India, Smart Home Automation India, Security Cameras India, Solar CCTV, 4G Cameras, NVR, OSTEYE">
     <link rel="canonical" href="https://osteye.com/">
     <meta name="robots" content="index, follow">
     <!-- Favicon: OSTEYE Owl Icon -->
@@ -28,7 +28,6 @@
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Opposite MPDO Office, Kulkacherla",
-        "addressLocality": "Vikarabad",
         "addressRegion": "Telangana",
         "postalCode": "509335",
         "addressCountry": "IN"
@@ -195,6 +194,55 @@
             position: relative;
         }
 
+        /* ═══════════ TOP TICKER ═══════════ */
+        .top-ticker {
+            width: 100%;
+            background: rgba(10, 21, 32, 0.95);
+            border-bottom: 1px solid rgba(0, 229, 255, 0.15);
+            color: #f0f4f8;
+            padding: 8px 0;
+            font-size: 0.85rem;
+            font-family: var(--font-body);
+            letter-spacing: 0.05em;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            transition: max-height 0.4s ease, padding 0.4s ease, opacity 0.4s ease, border 0.4s ease;
+            max-height: 40px;
+            opacity: 1;
+        }
+
+        #navbar.scrolled .top-ticker {
+            max-height: 0;
+            padding-top: 0;
+            padding-bottom: 0;
+            opacity: 0;
+            border-bottom-color: transparent;
+        }
+
+        .ticker-content {
+            display: inline-flex;
+            width: max-content;
+            animation: scroll-ticker 40s linear infinite;
+        }
+
+        .ticker-content:hover {
+            animation-play-state: paused;
+        }
+
+        .ticker-text {
+            padding-right: 50px;
+        }
+        
+        .ticker-text strong {
+            color: var(--accent-primary);
+        }
+
+        @keyframes scroll-ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
         /* ═══════════ NAVBAR ═══════════ */
         #navbar {
             position: fixed;
@@ -202,7 +250,7 @@
             left: 0;
             width: 100%;
             z-index: 1000;
-            padding: 16px 0;
+            padding: 0;
             transition: var(--transition);
             background: rgba(2, 4, 8, 0.7);
             backdrop-filter: blur(12px);
@@ -213,7 +261,7 @@
             background: rgba(2, 4, 8, 0.95);
             backdrop-filter: blur(20px);
             border-bottom-color: var(--border-glass);
-            padding: 10px 0;
+            padding: 0;
         }
 
         .nav-inner {
@@ -222,7 +270,12 @@
             justify-content: space-between;
             max-width: 1280px;
             margin: 0 auto;
-            padding: 0 24px;
+            padding: 16px 24px;
+            transition: var(--transition);
+        }
+
+        #navbar.scrolled .nav-inner {
+            padding: 10px 24px;
         }
 
         .nav-brand {
@@ -340,7 +393,7 @@
             flex-wrap: wrap;
             position: relative;
             overflow: hidden;
-            padding: 100px 24px 60px;
+            padding: 150px 24px 60px;
         }
 
         #particles-js {
@@ -3022,6 +3075,12 @@
 <body>
     <!-- ═══════════ NAVBAR ═══════════ -->
     <header id="navbar">
+        <div class="top-ticker">
+            <div class="ticker-content" aria-label="Important Notification Ticker">
+                <span class="ticker-text">🚨 PROTECT YOUR PREMISES 24/7. Get Instant AI Alerts Sent Directly To Your WhatsApp Upon Any Suspicious Activity! &nbsp;&bull;&nbsp; ⚡ <strong>OPTIONAL ADD-ON:</strong> Auto-Escalation to Local Police and the OSTEYE 24/7 Monitoring Team ⚡</span>
+                <span class="ticker-text">🚨 PROTECT YOUR PREMISES 24/7. Get Instant AI Alerts Sent Directly To Your WhatsApp Upon Any Suspicious Activity! &nbsp;&bull;&nbsp; ⚡ <strong>OPTIONAL ADD-ON:</strong> Auto-Escalation to Local Police and the OSTEYE 24/7 Monitoring Team ⚡</span>
+            </div>
+        </div>
         <nav class="nav-inner">
             <a href="#hero" class="nav-brand">
                 <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -3100,8 +3159,7 @@
         <div class="hero-content">
             <p class="hero-tag">[ AI SOLUTIONS ]<span class="cursor"></span></p>
             <h1 class="hero-h1">Your Property. <span class="cyan">Always Watched.</span><br>Always Smart.</h1>
-            <p class="hero-sub">OSTEYE brings intelligent surveillance and automation to homes, offices, and businesses
-                across Telangana — so you stay protected and in control, 24×7.</p>
+            <p class="hero-sub">🚨 <strong>DETECT INTRUDERS BEFORE THEY BREAK IN.</strong> Get Instant AI Alerts Sent Directly To Your WhatsApp Upon Any Suspicious Activity! <br><span style="color:var(--accent-primary); font-weight:600; font-size: 0.9em; margin-top: 8px; display:inline-block;">⚡ OPTIONAL ADD-ON: Auto-Escalation to Local Police and the OSTEYE 24/7 Monitoring Team</span></p>
             <div class="hero-buttons">
                 <a href="#contact" class="btn-cta">Get a Free Site Visit</a>
                 <a href="#smart-cctv" class="btn-cta btn-outline">View Our Solutions</a>
@@ -3352,8 +3410,8 @@
                     <p>Alert to your phone in under 2 seconds.</p>
                 </div>
                 <div class="number-card">
-                    <h3>70km</h3>
-                    <p>Serving clients across Vikarabad district and Hyderabad.</p>
+                    <h3>Nationwide</h3>
+                    <p>Serving clients throughout India.</p>
                 </div>
             </div>
         </div>
@@ -3479,7 +3537,7 @@
                             LN</div>
                         <div class="author-info">
                             <h4>Lakshmi Narayana</h4>
-                            <p>Vikarabad</p>
+                            <p>Telangana</p>
                         </div>
                     </div>
                 </div>
@@ -3544,8 +3602,7 @@
                     <div class="faq-q" >What areas do you serve? <i
                             class="fas fa-chevron-down"></i></div>
                     <div class="faq-a">
-                        <div class="faq-a-inner">We serve Hyderabad, Vikarabad, Rangareddy, and all across the Telangana
-                            region.</div>
+                        <div class="faq-a-inner">We serve clients throughout India.</div>
                     </div>
                 </div>
                 <div class="faq-item reveal">
@@ -3576,8 +3633,7 @@
                     <div class="faq-q" >Do you support large-scale deployments? <i
                             class="fas fa-chevron-down"></i></div>
                     <div class="faq-a">
-                        <div class="faq-a-inner">Yes — we handle multi-site enterprise and government deployments across
-                            Telangana.</div>
+                        <div class="faq-a-inner">Yes — we handle multi-site enterprise and government deployments throughout India.</div>
                     </div>
                 </div>
                 <div class="faq-item reveal">
@@ -3617,7 +3673,7 @@
                 <div class="contact-info reveal">
                     <h3>Contact Details</h3>
                     <div class="contact-detail"><i class="fas fa-map-marker-alt"></i>
-                        <p>Opposite MPDO Office, Kulkacherla, Vikarabad, Telangana — 509335</p>
+                        <p>Opposite MPDO Office, Kulkacherla, Telangana — 509335</p>
                     </div>
                     <div class="contact-detail"><i class="fas fa-phone"></i>
                         <p><a href="tel:+919391609598">+91 93916 09598</a></p>
@@ -3668,7 +3724,7 @@
             <div class="footer-grid">
                 <div class="footer-brand">
                     <div class="brand-text">OSTEYE</div>
-                    <p>Owl Security Technologies Eye — Telangana's AI Surveillance Leader</p>
+                    <p>Owl Security Technologies Eye — India's AI Surveillance Leader</p>
                     <div class="social-icons"><a href="https://www.facebook.com/osteye" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a><a href="https://www.instagram.com/osteye" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><i
                                 class="fab fa-instagram"></i></a><a href="https://www.youtube.com/@osteye" target="_blank" rel="noopener noreferrer" aria-label="YouTube"><i class="fab fa-youtube"></i></a><a
                             href="https://www.linkedin.com/company/osteye" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a></div>
@@ -3701,7 +3757,7 @@
                     <ul>
                         <li style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:10px"><i
                                 class="fas fa-map-marker-alt"
-                                style="color:var(--accent-primary);margin-right:8px"></i>Kulkacherla, Vikarabad,
+                                style="color:var(--accent-primary);margin-right:8px"></i>Kulkacherla,
                             Telangana</li>
                         <li><a href="tel:+919391609598"><i class="fas fa-phone" style="margin-right:8px"></i>+91 93916
                                 09598</a></li>
